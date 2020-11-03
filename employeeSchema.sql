@@ -12,7 +12,8 @@ CREATE TABLE role(
   id INT AUTO_INCREMENT NOT NULL,
   title VARCHAR(45) NOT NULL,
   salary DECIMAL NOT NULL,
-  CONSTRAINT fk_department_id FOREIGN KEY (department_id) deparment(id),
+  department_id INT NOT NULL,
+  constraint fk_department_id foreign key (department_id) references department(id),
   PRIMARY KEY(id)
 );
 
@@ -20,6 +21,7 @@ CREATE TABLE employee(
   id INT AUTO_INCREMENT NOT NULL,
   name VARCHAR(45) NOT NULL,
   power VARCHAR(45) NOT NULL,
+  role_id INT NOT NULL,
   constraint fk_role_id FOREIGN KEY (role_id) REFERENCES role(id),
   manager_id integer,
   constraint fk_manager_id FOREIGN KEY (manager_id) REFERENCES employee(id),
@@ -63,17 +65,18 @@ VALUES("Super Villian", 65000, 5);
 SELECT *
 FROM role;
 
-INSERT INTO employee (name, power, department_id)
+INSERT INTO employee (name, power, role_id)
 VALUES ("Kite-Man", "Is good with kites", 1);
-INSERT INTO employee (name, power, department_id)
+INSERT INTO employee (name, power, role_id)
 VALUES ("Polka-Dot Man", "Magic shapeshifting polka-dots", 2);
-INSERT INTO employee (name, power, department_id)
+INSERT INTO employee (name, power, role_id)
 VALUES ("Bane", "Strong but dumb", 3);
-INSERT INTO employee (name, power, department_id)
+INSERT INTO employee (name, power, role_id)
 VALUES ("Mr. Freeze", "Ice puns", 4);
-INSERT INTO employee (name, power, department_id)
+INSERT INTO employee (name, power, role_id)
 VALUES ("The Penguin", "Looks like Danny Devito", 5);
-INSERT INTO employee ("The Joker", "Wants to watch the world burn", 6);
+INSERT INTO employee (name, power, role_id)
+VALUES ("The Joker", "Wants to watch the world burn", 6);
 
 SELECT *
 FROM employee;
