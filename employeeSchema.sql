@@ -34,15 +34,15 @@ SELECT *
 FROM department;
 
 INSERT INTO department (name)
-VALUES ("Sales");
+VALUES ("Muscle");
 INSERT INTO department (name)
-VALUES ("Engineering");
+VALUES ("Gooning");
 INSERT INTO department (name)
-VALUES ("Finance");
+VALUES ("Gooning for better villian");
 INSERT INTO department (name)
-VALUES ("Legal");
+VALUES ("2nd in command");
 INSERT INTO department (name)
-VALUES ("Manager");
+VALUES ("Super Villian");
 
 SELECT *
 FROM department;
@@ -68,7 +68,7 @@ VALUES ("Kite-Man", "Is good with kites", 1);
 INSERT INTO employee (name, power, department_id)
 VALUES ("Polka-Dot Man", "Magic shapeshifting polka-dots", 2);
 INSERT INTO employee (name, power, department_id)
-VALUES ("Polka-Dot Man", "Magic shapeshifting polka-dots", 3);
+VALUES ("Bane", "Strong but dumb", 3);
 INSERT INTO employee (name, power, department_id)
 VALUES ("Mr. Freeze", "Ice puns", 4);
 INSERT INTO employee (name, power, department_id)
