@@ -25,6 +25,15 @@ const updateInfo = [
     "exit"
 ];
 
+const role_id = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+]
+
 search();
 
 function search() {
@@ -53,7 +62,7 @@ function search() {
                     addEmployee();
 
                 case viewOptions[4]:
-                    connection.end();
+                   return;
                     break;
             }
         })
@@ -91,5 +100,51 @@ function roleView() {
 }
 
 function addEmployee() {
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "name",
+                message: "What is the name of this employee?",
+                validate: async (input) => {
+                    if (/^[a-zA-Z]+$/.test(input)) {
+                        return true;
+                    }
+                    console.log("\nPlease enter a valid name");
+                    return false;
+                }
+            },
+            {
+                type: "input",
+                name: "power",
+                message: "What is the power of this employee?",
+                validate: async (input) => {
+                    if (/^[a-zA-Z]+$/.test(input)) {
+                        return true;
+                    }
+                    console.log("\nPlease enter a valid name");
+                    return false;
+                }
+            },
+            {
+                type: "list",
+                name: "role_id",
+                message: "What is the role id of this employee?",
+                choices: role_id
+            }
+        ])
+            .then(function (data) {
+                console.log(data);
+                addEmployeeUpdate(data.name, data.power, data.role_id);
+            });
+    }
     
-}
+    //stage two, updateDB
+    function addEmployeeUpdate(name, power, role_id){
+        let addEmployeeQuery = "INSERT INTO employee (name, power, role_id) VALUES (?,?,?)";
+        connection.query(addEmployeeQuery, [name, power, role_id], function (err, res) {
+            if (err) throw err;
+            console.log(name + ": role " + role_id + " was added.");
+            //return to main menu
+            search();
+        });
+    }
